@@ -1,9 +1,12 @@
 VERSION = 4
 PATCHLEVEL = 9
 <<<<<<< HEAD
+<<<<<<< HEAD
 SUBLEVEL = 186
 =======
 SUBLEVEL = 191
+=======
+SUBLEVEL = 192
 EXTRAVERSION =
 NAME = Roaring Lionus
 
