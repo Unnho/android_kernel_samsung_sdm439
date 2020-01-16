@@ -2598,12 +2598,9 @@ void composite_resume(struct usb_gadget *gadget)
 {
 	struct usb_composite_dev	*cdev = get_gadget_data(gadget);
 	struct usb_function		*f;
-<<<<<<< HEAD
 	int				ret;
 	unsigned long			flags;
-=======
 	unsigned			maxpower;
->>>>>>> 6596754b90c5 (usb: gadget: composite: Support more than 500mA MaxPower)
 
 	/* REVISIT:  should we have config level
 	 * suspend/resume callbacks?
@@ -2642,9 +2639,7 @@ void composite_resume(struct usb_gadget *gadget)
 				f->resume(f);
 		}
 
-<<<<<<< HEAD
 		usb_gadget_vbus_draw(gadget, USB_VBUS_DRAW(gadget->speed));
-=======
 		maxpower = cdev->config->MaxPower ?
 			cdev->config->MaxPower : CONFIG_USB_GADGET_VBUS_DRAW;
 		if (gadget->speed < USB_SPEED_SUPER)
@@ -2653,7 +2648,6 @@ void composite_resume(struct usb_gadget *gadget)
 			maxpower = min(maxpower, 900U);
 
 		usb_gadget_vbus_draw(gadget, maxpower);
->>>>>>> 6596754b90c5 (usb: gadget: composite: Support more than 500mA MaxPower)
 	}
 
 	spin_unlock_irqrestore(&cdev->lock, flags);
