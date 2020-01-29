@@ -720,12 +720,14 @@ static int gs_start_io(struct gs_port *port)
 	port->n_read = 0;
 	started = gs_start_rx(port);
 
-	/* unblock any pending writes into our circular buffer */
 	if (started) {
 	/* HS60 add for P191012-00970 by yanghui at 2019/10/31 start */
 		if (NULL == port->port.tty)
 			return -EIO;
 	/* HS60 add for P191012-00970 by yanghui at 2019/10/31 end */
+		gs_start_tx(port);
+		/* Unblock any pending writes into our circular buffer, in case
+		 * we didn't in gs_start_tx() */
 		tty_wakeup(port->port.tty);
 	} else {
 		gs_free_requests(ep, head, &port->read_allocated);
