@@ -1525,6 +1525,13 @@ struct ext4_sb_info {
 
 	/* Barrier between changing inodes' journal flags and writepages ops. */
 	struct percpu_rw_semaphore s_journal_flag_rwsem;
+	struct percpu_rw_semaphore s_writepages_rwsem;
+
+	/* Encryption support */
+#ifdef CONFIG_EXT4_FS_ENCRYPTION
+	u8 key_prefix[EXT4_KEY_DESC_PREFIX_SIZE];
+	u8 key_prefix_size;
+#endif
 };
 
 static inline struct ext4_sb_info *EXT4_SB(struct super_block *sb)
