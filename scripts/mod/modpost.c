@@ -1214,14 +1214,11 @@ static int secref_whitelist(const struct sectioncheck *mismatch,
 		return 0;
 
 	/* Check for pattern 6 */
-<<<<<<< HEAD
 	if (match(fromsec, text_sections) &&
 	    match(tosec, init_exit_sections) &&
 	    match(tosym, cfi_symbols))
-=======
 	if (strstarts(fromsym, ".L"))
->>>>>>> 53a7d908b473 (modpost: skip ELF local symbols during section mismatch check)
-		return 0;
+	return 0;
 
 	return 1;
 }
